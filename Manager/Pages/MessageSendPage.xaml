@@ -1,0 +1,246 @@
+﻿<Page x:Class="Manager.Pages.MessageSendPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      
+	  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+      
+      xmlns:local="clr-namespace:Manager.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <svgc:SvgViewbox
+            Height="18"
+            Width="26" 
+            HorizontalAlignment="Left" 
+            Margin="24,34,0,0"
+            Source="/Resources/icon/ic_send_message.svg"
+            VerticalAlignment="Top"/>
+
+        <TextBlock
+            VerticalAlignment="Top"
+            Foreground="{DynamicResource Color_Black1}"
+            FontSize="19" 
+            FontFamily="/Resources/font/#esamanru Medium"
+            Margin="58,32,0,0" 
+            HorizontalAlignment="Left" ><Run Text="공지사항 전송 "/></TextBlock>
+
+        <DockPanel Grid.Row="1"
+                   Background="{DynamicResource Color_White2}"/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource Color_Gray4}"
+                        Margin="10,10,0,0" 
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Top" 
+                        FontFamily="/Resources/font/#esamanru Medium"
+                        HorizontalAlignment="Left">
+                        <Run Text="메시지 "/>
+                        <Run Text="전송 대상"/>
+                    </TextBlock>
+
+                    <ComboBox 
+                        Name="officeTypeComboBox"
+                        Margin="10,0,0,10"
+                        VerticalAlignment="Bottom"
+                        FontFamily="/Resources/font/#esamanru Light"
+                        FontSize="11"
+                        Width="113"
+                        BorderThickness="0,0,0,1.5"
+                        Foreground="{DynamicResource Color_Black1}"
+                        BorderBrush="{DynamicResource Color_Black1}"
+                        Resources="{StaticResource MaterialDesignThemeForBlue}" 
+                        IsReadOnly="True" 
+                        HorizontalAlignment="Left" 
+                        Height="28" 
+                        SelectionChanged="officeTypeComboBox_SelectionChanged">
+
+                        <!-- ComboBox search menu item -->
+                        <ComboBoxItem Content="학원" Foreground="#FF636363"/>
+                        <ComboBoxItem Content="교습소" Foreground="#FF636363"/>
+                    </ComboBox>
+
+                    <CheckBox 
+                        x:Name="allSelectCheckbox"
+                        Content="전체선택"
+                        FontFamily="/Resources/font/#esamanru Light"
+                        FontSize="12"
+                        Foreground="{DynamicResource Color_Black1}"
+                        Resources="{StaticResource MaterialDesignThemeForBlue}"
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center"
+                        Background="#1C7BFF" 
+                        Margin="0,11,11,41" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked" />
+
+                    <Button
+                        x:Name="allunSelectButton"
+                        Foreground="White"
+                        Margin="0,0,10,10" 
+                        VerticalAlignment="Bottom" 
+                        Height="25"
+                        FontFamily="/Resources/font/#esamanru Light" 
+                        FontSize="11"
+                        Content="선택해제"       
+                        Background="#1C7BFF" 
+                        BorderBrush="#1C7BFF"
+                        Width="81"
+                        HorizontalAlignment="Right"
+                        Resources="{StaticResource MaterialDesignThemeForBlue}" Click="allunSelectButton_Click" />
+                </Grid>
+
+                <DockPanel 
+                    Grid.Row="1"
+                    Background="{DynamicResource Color_White2}"/>
+
+                <ListView
+                    Grid.Row="2"
+                    x:Name="officeSelectListView"
+                    Resources="{StaticResource MaterialDesignThemeForBlue}" 
+                    PreviewMouseLeftButtonDown="officeSelectListView_PreviewMouseLeftButtonDown">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="230">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock 
+                                    Text="{Binding officeName}"
+                                    TextWrapping="Wrap"
+                                    MaxHeight="26"
+                                    FontFamily="/Resources/font/#esamanru Light"
+                                    FontSize="11"
+                                    Foreground="{Binding txtColor}" 
+                                    Margin="0,0,5,0" 
+                                    TextTrimming="CharacterEllipsis" 
+                                    VerticalAlignment="Top"/>
+                                <TextBlock 
+                                    Text="{Binding officeRegNum}"
+                                    TextWrapping="Wrap"
+                                    MaxHeight="26"
+                                    FontFamily="/Resources/font/#esamanru Light"
+                                    FontSize="10"
+                                    Foreground="{DynamicResource Color_Gray2}" 
+                                    Margin="0,3,4.7,0" 
+                                    TextTrimming="CharacterEllipsis" 
+                                    VerticalAlignment="Top" 
+                                    Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <DockPanel Grid.Column="1"
+                       Background="{DynamicResource Color_White2}"/>
+
+            <ScrollViewer Grid.Column="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <svgc:SvgViewbox
+                        Height="16"
+                        Width="24" 
+                        HorizontalAlignment="Left"
+                        Source="/Resources/icon/ic_title.svg"
+                        VerticalAlignment="Top" 
+                        Margin="14,67,0,0"/>
+
+                    <TextBlock
+                        FontSize="15"
+                        Foreground="Black"
+                        Margin="15,15,150,0" 
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Top" 
+                        FontFamily="/Resources/font/#esamanru Medium">
+                        <Run Text="메시지 "/><Run Text="내용"/>
+                    </TextBlock>
+
+                    <RichTextBox
+                        x:Name="messages"
+                        Height="Auto"
+                        MinHeight="200"
+                        Margin="15,95,49,0" 
+                        VerticalAlignment="Top"
+                        FontFamily="/Resources/font/#esamanru Light" 
+                        FontSize="12"
+                        BorderBrush="Black" 
+                        SelectionBrush="#1C7BFF"
+                        Resources="{StaticResource MaterialDesignThemeForBlue}" />
+
+                    <Button
+                        x:Name="messageSendButton"
+                        Foreground="White"
+                        Margin="0,15,49,30" 
+                        VerticalAlignment="Top" 
+                        Height="28"
+                        FontFamily="/Resources/font/#esamanru Light" 
+                        FontSize="11"
+                        Content="메시지 전송"       
+                        Background="#1C7BFF" 
+                        BorderBrush="#1C7BFF"
+                        Width="130"
+                        HorizontalAlignment="Right"
+                        Resources="{StaticResource MaterialDesignThemeForBlue}" 
+                        Grid.Row="1" Click="messageSendButton_Click"/>
+
+                    <TextBox
+                        x:Name="title"
+                        Height="23"
+                        Margin="82,60,49,0" 
+                        TextWrapping="NoWrap" 
+                        VerticalAlignment="Top"
+                        FontFamily="/Resources/font/#esamanru Light" 
+                        FontSize="12"
+                        BorderBrush="Black" 
+                        SelectionBrush="#1C7BFF"
+                        Resources="{StaticResource MaterialDesignThemeForBlue}"/>
+
+                    <TextBlock
+                        Text="제목"
+                        FontSize="13"
+                        Foreground="Black"
+                        Margin="45,66,0,0" 
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Top" 
+                        FontFamily="/Resources/font/#esamanru Light" 
+                        HorizontalAlignment="Left"/>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

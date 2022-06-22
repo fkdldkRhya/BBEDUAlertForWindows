@@ -1,0 +1,178 @@
+﻿<Window x:Class="Manager.Windows.Dialog.FirebaseAuthInputDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:local="clr-namespace:Manager.Windows"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+       
+        Height="300" Width="450"
+        
+        Title="관리자 인증"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" 
+        WindowStyle="None"
+        Background="{x:Null}"
+
+        
+        Style="{StaticResource CustomWindowTitleBarStyle}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border 
+            BorderBrush="Gray" 
+            BorderThickness="0"
+            Background="White" 
+            Margin="5"
+            Grid.RowSpan="2">
+            
+            <Border.Effect>
+                <DropShadowEffect 
+                ShadowDepth="0" 
+                BlurRadius="10" 
+                Color="Black" />
+            </Border.Effect>
+        </Border>
+
+        <DockPanel LastChildFill="False" Margin="5,5,5,0">
+            <DockPanel.Resources>
+                <!-- Label style -->
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Margin" Value="10,0,0,0" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="DockPanel.Dock" Value="Left" />
+                    <Setter Property="FontFamily" Value="/Resources/font/#esamanru Medium" />
+                    <Setter Property="Width" Value="Auto" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Background" Value="Transparent" />
+                </Style>
+            </DockPanel.Resources>
+
+            <Label 
+                Content="서울특별시북부교육지원청 알리미"
+                FontSize="12"
+                Foreground="{DynamicResource Color_Black1}"/>
+        </DockPanel>
+        
+        <TextBlock 
+            FontSize="11"
+            Foreground="{DynamicResource Color_Gray2}"
+            Margin="20,20,0,0"
+            Grid.Row="1"
+            FontFamily="/Resources/font/#esamanru Light" 
+            TextWrapping="WrapWithOverflow"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+                
+            Width="335">
+                <Run Text="사용자가 관리자임을 인증해야 합니다. Firebase URL"/>
+                <Run Text=" "/>
+                <Run Text="(Firebase Realtime Database)와 서버 접근 비밀번호를 입력해 주십시오.&#xA;&#xA;해당 작업을 진행하지 않으면 해당 프로그램을 사용할 수 없습니다."/>
+        </TextBlock>
+
+        <TextBlock
+            Text="Firebase Realtime Database"
+            FontSize="12"
+            Foreground="{DynamicResource Color_Black1}"
+            Margin="20,97,0,0"
+            Grid.Row="1"
+            FontFamily="/Resources/font/#esamanru Light" 
+            TextWrapping="NoWrap"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Width="165"/>
+
+        <TextBox
+            x:Name="realtimeDatbaseURL"
+            Height="23"
+            Margin="200,91,20,0"
+            Grid.Row="1" 
+            TextWrapping="NoWrap" 
+            VerticalAlignment="Top"
+            FontFamily="/Resources/font/#esamanru Light" 
+            FontSize="12"
+            Resources="{StaticResource MaterialDesignThemeForBlue}" 
+            SelectionBrush="{DynamicResource Color_Blue1}"/>
+
+        <TextBlock
+            FontSize="12"
+            Text="Firebase Admin Password"
+            Foreground="{DynamicResource Color_Black1}"
+            Margin="20,131,0,0"
+            Grid.Row="1"
+            FontFamily="/Resources/font/#esamanru Light" 
+            TextWrapping="NoWrap"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Left" 
+            Width="165"/>
+
+        <TextBox 
+            x:Name="firebasePassword"
+            Height="23"
+            Margin="200,125,20,0"
+            Grid.Row="1" 
+            TextWrapping="NoWrap" 
+            VerticalAlignment="Top"
+            FontFamily="/Resources/font/#esamanru Light" 
+            FontSize="12"
+            Resources="{StaticResource MaterialDesignThemeForBlue}" 
+            SelectionBrush="{DynamicResource Color_Blue1}"/>
+
+        <Image
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Height="60"
+            Width="62"
+            Margin="0,15,18,0" 
+            Source="{svgc:SvgImage /Resources/logo/logo_sbdooe.svg}" 
+            Grid.Row="1"/>
+
+        <Button
+            Content="종료" 
+            HorizontalAlignment="Right" 
+            Margin="0,0,20,20" 
+            Grid.Row="1" 
+            VerticalAlignment="Bottom" 
+            Width="120" 
+            Height="30" 
+            Foreground="{DynamicResource Color_White1}"
+            Resources="{StaticResource MaterialDesignThemeForGrey}" 
+            Click="ExitButton_Click"
+            FontFamily="/Resources/font/#esamanru Light" 
+            FontSize="13"/>
+
+        <Button 
+            Foreground="{DynamicResource Color_White1}"
+            Resources="{StaticResource MaterialDesignThemeForBlue}" 
+            Content="확인" 
+            HorizontalAlignment="Right" 
+            Margin="0,0,160,20" 
+            Grid.Row="1" 
+            VerticalAlignment="Bottom" 
+            Width="120" 
+            Height="30"
+            Click="OKButton_Click"
+            FontFamily="/Resources/font/#esamanru Light" 
+            FontSize="13"
+            Background="{DynamicResource Color_Blue1}" 
+            BorderBrush="{DynamicResource Color_Blue1}"/>
+
+        <TextBlock
+            x:Name="result"
+            FontSize="11"
+            Foreground="{DynamicResource Color_Red1}"
+            Margin="20,165,20,0"
+            Grid.Row="1"
+            FontFamily="/Resources/font/#esamanru Light" 
+            TextWrapping="Wrap"
+            VerticalAlignment="Top"/>
+    </Grid>
+</Window>

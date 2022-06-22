@@ -1,0 +1,537 @@
+﻿<Page x:Class="Manager.Pages.UserManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      
+	  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+      
+      xmlns:local="clr-namespace:Manager.Pages"
+      mc:Ignorable="d" 
+      
+      d:DesignHeight="450"
+      d:DesignWidth="1000" >
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid 
+            Visibility="Collapsed"
+            x:Name="userInfoPanel"
+            Margin="0,0,-2,0" 
+            Grid.Column="1"
+            Width="250" 
+            HorizontalAlignment="Right" 
+            Background="{DynamicResource Color_Blue2}">
+
+            <ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Text="사용자 정보"
+                        VerticalAlignment="Top"
+                        Foreground="{DynamicResource Color_White1}"
+                        FontSize="15" 
+                        FontFamily="/Manager;component/Resources/font/#esamanru Medium"
+                        Margin="20,35,0,0" 
+                        HorizontalAlignment="Left" />
+
+                    <Button 
+                        Margin="0,10,10,0"
+                        Width="25"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Height="25" 
+                        Click="UserInfoPanelClose_OnClick">
+
+                        <StackPanel>
+                            <Image
+                                Height="14"
+                                Width="14" 
+                                HorizontalAlignment="Center" 
+                                Margin="0"
+                                Source="{svgc:SvgImage /Resources/icon/ic_cancel_for_white.svg}"
+                                VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="DockPanel.Dock" Value="Right" />
+                                <Setter Property="Width" Value="40" />
+                                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                                <Setter Property="Foreground" Value="{DynamicResource Color_Black1}" />
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" 
+                                                          VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <svgc:SvgViewbox
+                        Height="13"
+                        Width="18" 
+                        HorizontalAlignment="Left" 
+                        Margin="15,19,0,0"
+                        Source="/Resources/icon/ic_email.svg"
+                        VerticalAlignment="Top"
+                        Grid.Row="1"/>
+
+                    <TextBlock
+                        Text="사용자 이메일"
+                        VerticalAlignment="Top"
+                        Foreground="{DynamicResource Color_White1}"
+                        FontSize="12" 
+                        FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                        Margin="40,19,0,0" 
+                        HorizontalAlignment="Left"
+                        Grid.Row="1" />
+
+                    <TextBox
+                        x:Name="userInfoForEmail"
+                        Height="Auto"
+                        Margin="15,40,15,0" 
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Top"
+                        FontFamily="/Resources/font/#esamanru Light" 
+                        FontSize="11"
+                        Resources="{StaticResource MaterialDesignTheme}" 
+                        SelectionBrush="{DynamicResource Color_White2}"
+                        BorderBrush="{DynamicResource Color_White1}" 
+                        Foreground="{DynamicResource Color_White1}"
+                        CaretBrush="{DynamicResource Color_White1}"
+                        Grid.Row="1" />
+
+                    <svgc:SvgViewbox
+                        Height="18"
+                        Width="18" 
+                        HorizontalAlignment="Left" 
+                        Margin="15,15,0,0"
+                        Source="/Resources/icon/ic_office.svg"
+                        VerticalAlignment="Top"
+                        Grid.Row="2"/>
+
+                    <TextBlock
+                        Text="학원/교습소 이름"
+                        VerticalAlignment="Top"
+                        Foreground="{DynamicResource Color_White1}"
+                        FontSize="12" 
+                        FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                        Margin="39,18,0,0" 
+                        HorizontalAlignment="Left"
+                        Grid.Row="2" />
+
+                    <TextBox
+                        x:Name="userInfoForOfficeName"
+                        Height="Auto"
+                        Margin="15,40,15,0" 
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Top"
+                        FontFamily="/Resources/font/#esamanru Light" 
+                        FontSize="11"
+                        Resources="{StaticResource MaterialDesignTheme}" 
+                        SelectionBrush="{DynamicResource Color_White2}"
+                        BorderBrush="{DynamicResource Color_White1}" 
+                        Foreground="{DynamicResource Color_White1}"
+                        CaretBrush="{DynamicResource Color_White1}"
+                        Grid.Row="2"
+                        IsReadOnly="True"/>
+
+                    <svgc:SvgViewbox
+                        Height="18"
+                        Width="18" 
+                        HorizontalAlignment="Left" 
+                        Margin="14,15,0,0"
+                        Source="/Resources/icon/ic_user.svg"
+                        VerticalAlignment="Top" 
+                        Grid.Row="3"/>
+
+                    <TextBlock
+                        Text="설립자 이름"
+                        VerticalAlignment="Top"
+                        Foreground="{DynamicResource Color_White1}"
+                        FontSize="12" 
+                        FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                        Margin="38,18,0,0" 
+                        HorizontalAlignment="Left"
+                        Grid.Row="3" />
+
+                    <TextBox
+                        x:Name="userInfoForOfficeFounder"
+                        Height="Auto"
+                        Margin="14,40,15,0" 
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Top"
+                        FontFamily="/Resources/font/#esamanru Light" 
+                        FontSize="11"
+                        Resources="{StaticResource MaterialDesignTheme}" 
+                        SelectionBrush="{DynamicResource Color_White2}"
+                        BorderBrush="{DynamicResource Color_White1}" 
+                        Foreground="{DynamicResource Color_White1}"
+                        CaretBrush="{DynamicResource Color_White1}" 
+                        Grid.Row="3"
+                        IsReadOnly="True"/>
+
+                    <svgc:SvgViewbox
+                        Height="18"
+                        Width="18" 
+                        HorizontalAlignment="Left" 
+                        Margin="14,15,0,0"
+                        Source="/Resources/icon/ic_registration.svg"
+                        VerticalAlignment="Top" 
+                        Grid.Row="4"/>
+
+                    <TextBlock
+                        Text="등록번호"
+                        VerticalAlignment="Top"
+                        Foreground="{DynamicResource Color_White1}"
+                        FontSize="12" 
+                        FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                        Margin="38,18,0,0" 
+                        HorizontalAlignment="Left" 
+                        Grid.Row="4" />
+
+                    <TextBox
+                        x:Name="userInfoForOfficeNumber"
+                        Height="Auto"
+                        Margin="14,40,15,0" 
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Top"
+                        FontFamily="/Resources/font/#esamanru Light" 
+                        FontSize="11"
+                        Resources="{StaticResource MaterialDesignTheme}" 
+                        SelectionBrush="{DynamicResource Color_White2}"
+                        BorderBrush="{DynamicResource Color_White1}" 
+                        Foreground="{DynamicResource Color_White1}"
+                        CaretBrush="{DynamicResource Color_White1}" 
+                        Grid.Row="4" />
+
+                    <TextBlock
+                        Text="최근 로그인"
+                        VerticalAlignment="Top"
+                        Foreground="{DynamicResource Color_White1}"
+                        FontSize="11" 
+                        FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                        Margin="16,15,0,0" 
+                        HorizontalAlignment="Left" 
+                        Grid.Row="5" />
+
+                    <TextBlock
+                        x:Name="userInfoForDate"
+                        VerticalAlignment="Top"
+                        Foreground="{DynamicResource Color_White1}"
+                        FontSize="10" 
+                        FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                        Margin="77,16,0,0" 
+                        HorizontalAlignment="Left" 
+                        Grid.Row="5" />
+
+                    <Grid
+                        x:Name="warningPanel"
+                        Grid.Row="6"
+                        Margin="15,10,15,40" 
+                        VerticalAlignment="Bottom">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <svgc:SvgViewbox
+                            Height="18"
+                            Width="18" 
+                            HorizontalAlignment="Left" 
+                            Margin="0,0,0,5"
+                            Source="/Resources/icon/ic_warning.svg"
+                            VerticalAlignment="Top" />
+
+
+                        <TextBlock
+                            Foreground="{DynamicResource Color_White1}"
+                            FontSize="10" 
+                            TextWrapping="Wrap"
+                            Text="경고!"
+                            FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                            Margin="25,3,0,10" />
+
+                        <TextBlock
+                            x:Name="userInfoForErrorLog"
+                            VerticalAlignment="Bottom"
+                            Foreground="{DynamicResource Color_White1}"
+                            FontSize="10" 
+                            TextWrapping="Wrap"
+                            FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                            Margin="0" 
+                            Grid.Row="1" />
+                    </Grid>
+
+
+                    <Grid 
+                        Grid.Row="6" 
+                        VerticalAlignment="Bottom"
+                        Height="35" 
+                        Margin="0,0,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button
+                            Width="Auto"
+                            Margin="0" 
+                            Click="UserInfoSave_ButtonClick">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Image
+                                    Height="14"
+                                    Width="14" 
+                                    HorizontalAlignment="Center" 
+                                    Margin="0,0,10,0"
+                                    Source="{svgc:SvgImage /Resources/icon/ic_save.svg}"
+                                    VerticalAlignment="Center"/>
+
+                                <TextBlock
+                                    Text="저장"
+                                    VerticalAlignment="Center"
+                                    Foreground="{DynamicResource Color_White1}"
+                                    FontSize="12" 
+                                    FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                                    HorizontalAlignment="Center" />
+                            </StackPanel>
+
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="FontFamily" Value="/Resources/font/#esamanru Light"/>
+                                    <Setter Property="DockPanel.Dock" Value="Right" />
+                                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                                    <Setter Property="Foreground" Value="{DynamicResource Color_White1}" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="Background" Value="{DynamicResource Color_Blue3}" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                          VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                    <!-- Button - Mouse color event Triggers -->
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource Color_Blue1}" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource Color_Blue2}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <Button
+                            Width="Auto"
+                            Grid.Column="1" 
+                            Click="UserInfoDelete_ButtonClick">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Image
+                                    Height="14"
+                                    Width="14" 
+                                    HorizontalAlignment="Center" 
+                                    Margin="0,0,10,0"
+                                    Source="{svgc:SvgImage /Resources/icon/ic_delete.svg}"
+                                    VerticalAlignment="Center"/>
+
+                                <TextBlock
+                                    Text="사용자 삭제"
+                                    VerticalAlignment="Center"
+                                    Foreground="{DynamicResource Color_White1}"
+                                    FontSize="12" 
+                                    FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                                    HorizontalAlignment="Center" />
+                            </StackPanel>
+
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="FontFamily" Value="/Resources/font/#esamanru Light"/>
+                                    <Setter Property="DockPanel.Dock" Value="Right" />
+                                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                                    <Setter Property="Foreground" Value="{DynamicResource Color_White1}" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="Background" Value="{DynamicResource Color_Blue3}" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                          VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                    <!-- Button - Mouse color event Triggers -->
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource Color_Blue1}" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource Color_Blue2}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Loaded="Grid_Loaded">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <svgc:SvgViewbox
+                Height="25"
+                Width="25" 
+                HorizontalAlignment="Left" 
+                Margin="25,30,0,0"
+                Source="/Resources/icon/ic_user_management.svg"
+                VerticalAlignment="Top"/>
+
+            <TextBlock
+                Text="사용자 관리"
+                VerticalAlignment="Top"
+                Foreground="{DynamicResource Color_Black1}"
+                FontSize="19" 
+                FontFamily="/Manager;component/Resources/font/#esamanru Medium"
+                Margin="55,32,0,0" 
+                HorizontalAlignment="Left" />
+
+            <svgc:SvgViewbox
+                Height="18"
+                Width="18" 
+                HorizontalAlignment="Right" 
+                Margin="0,36,373,0"
+                Source="/Resources/icon/ic_search.svg"
+                VerticalAlignment="Top"/>
+
+            <TextBox
+                x:Name="searchUser"
+                Height="23"
+                Margin="0,33,240,29" 
+                TextWrapping="NoWrap" 
+                VerticalAlignment="Center"
+                FontFamily="/Resources/font/#esamanru Light" 
+                FontSize="11"
+                BorderThickness="0,0,0,1.5"
+                Resources="{StaticResource MaterialDesignThemeForBlue}" 
+                SelectionBrush="{DynamicResource Color_Blue1}"
+                HorizontalAlignment="Right"
+                Width="125"
+                BorderBrush="{DynamicResource Color_Black1}" 
+                TextChanged="searchUser_TextChanged"/>
+
+            <ComboBox 
+                Name="searchTypeComboBox"
+                Margin="0,34,128,29"
+                VerticalAlignment="Center"
+                FontFamily="/Resources/font/#esamanru Light"
+                FontSize="11"
+                Width="103"
+                BorderThickness="0,0,0,1.5"
+                Foreground="{DynamicResource Color_Black1}"
+                BorderBrush="{DynamicResource Color_Black1}"
+                Resources="{StaticResource MaterialDesignThemeForBlue}" 
+                IsReadOnly="True" 
+                HorizontalAlignment="Right"
+                SelectedIndex="0"
+                SelectionChanged="searchTypeComboBox_SelectionChanged">
+
+                <!-- ComboBox search menu item -->
+                <ComboBoxItem Content="사용자 이메일" Foreground="#FF636363"/>
+                <ComboBoxItem Content="학원/교습소 이름" Foreground="#FF636363"/>
+                <ComboBoxItem Content="설립자 이름" Foreground="#FF636363"/>
+                <ComboBoxItem Content="등록번호" Foreground="#FF636363"/>
+                <ComboBoxItem Content="최근 로그인 날짜" Foreground="#FF636363"/>
+            </ComboBox>
+
+            <ComboBox 
+                Name="sortComboBox"
+                Margin="0,34,15,29"
+                VerticalAlignment="Center"
+                FontFamily="/Resources/font/#esamanru Light"
+                FontSize="11"
+                Width="104"
+                BorderThickness="0,0,0,1.5"
+                Foreground="{DynamicResource Color_Black1}"
+                BorderBrush="{DynamicResource Color_Black1}"
+                Resources="{StaticResource MaterialDesignThemeForBlue}" 
+                IsReadOnly="True" 
+                HorizontalAlignment="Right" 
+                SelectionChanged="SortComboBox_SelectionChanged">
+
+                <!-- ComboBox search menu item -->
+                <ComboBoxItem Content="오름차순 정렬" Foreground="#FF636363"/>
+                <ComboBoxItem Content="내림차순 정렬" Foreground="#FF636363"/>
+            </ComboBox>
+
+
+            <ListView 
+                x:Name="userListView"
+                Resources="{StaticResource MaterialDesignThemeForBlue}"
+                Grid.Row="1"
+                PreviewMouseLeftButtonUp="UserListView_PreviewMouseLeftButtonUp" Grid.RowSpan="2">
+
+                <!-- ListView item template -->
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="사용자 이메일" DisplayMemberBinding="{Binding email}" Width="auto"/>
+                        <GridViewColumn Header="학원/교습소 이름" DisplayMemberBinding="{Binding regName}" Width="auto" />
+                        <GridViewColumn Header="설립자 이름" DisplayMemberBinding="{Binding regFounder}" Width="auto"/>
+                        <GridViewColumn Header="등록번호" DisplayMemberBinding="{Binding regNum}" Width="auto"/>
+                        <GridViewColumn Header="최근 로그인 날짜" DisplayMemberBinding="{Binding loginDate}" Width="auto"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <ProgressBar
+                x:Name="searchTaskProgressbae" 
+                Background="{x:Null}" 
+                BorderBrush="{x:Null}" 
+                Visibility="Collapsed"
+                Foreground="#FF0074FF"
+                Grid.Row="2" 
+                Height="5"/>
+        </Grid>
+    </Grid>
+</Page>

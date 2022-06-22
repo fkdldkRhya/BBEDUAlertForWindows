@@ -1,0 +1,205 @@
+﻿<Page x:Class="Manager.Pages.MessageManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      
+	  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+      
+      xmlns:local="clr-namespace:Manager.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <svgc:SvgViewbox
+            Height="18"
+            Width="26" 
+            HorizontalAlignment="Left" 
+            Margin="24,34,0,0"
+            Source="/Resources/icon/ic_message_management.svg"
+            VerticalAlignment="Top"/>
+
+        <TextBlock
+            Text="메시지 관리"
+            VerticalAlignment="Top"
+            Foreground="{DynamicResource Color_Black1}"
+            FontSize="19" 
+            FontFamily="/Manager;component/Resources/font/#esamanru Medium"
+            Margin="58,32,0,0" 
+            HorizontalAlignment="Left" />
+
+        <DockPanel Grid.Row="1"
+                   Background="{DynamicResource Color_White2}"/>
+
+        <Grid
+            Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ListView
+                    x:Name="messageForOfficeSelectTreeView"
+                    Resources="{StaticResource MaterialDesignThemeForBlue}"
+                    PreviewMouseLeftButtonUp="messageForOfficeSelectTreeView_PreviewMouseLeftButtonUp">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="230">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock 
+                                    Text="{Binding officeName}"
+                                    TextWrapping="Wrap"
+                                    MaxHeight="26"
+                                    FontFamily="/Resources/font/#esamanru Light"
+                                    FontSize="11"
+                                    Foreground="{DynamicResource Color_Black1}" 
+                                    Margin="0,0,5,0" 
+                                    TextTrimming="CharacterEllipsis" 
+                                    VerticalAlignment="Top"/>
+                                <TextBlock 
+                                    Text="{Binding officeRegNum}"
+                                    TextWrapping="Wrap"
+                                    MaxHeight="26"
+                                    FontFamily="/Resources/font/#esamanru Light"
+                                    FontSize="10"
+                                    Foreground="{DynamicResource Color_Gray2}" 
+                                    Margin="0,3,4.7,0" 
+                                    TextTrimming="CharacterEllipsis" 
+                                    VerticalAlignment="Top" 
+                                    Grid.Row="1"/>
+
+                                <Rectangle
+                                    Visibility="{Binding isShow}"
+                                    HorizontalAlignment="Right"
+                                    Grid.RowSpan="2"
+                                    Width="22" 
+                                    Height="15"
+                                    VerticalAlignment="Center" 
+                                    Fill="{DynamicResource Color_Blue2}"
+                                    RadiusY="7.5"
+                                    RadiusX="7.5" 
+                                    Margin="0,7,0,9" 
+                                    Grid.Column="1" />
+                                <TextBlock 
+                                    Visibility="{Binding isShow}"
+                                    Text="{Binding messageCount}"
+                                    TextWrapping="Wrap"
+                                    FontFamily="/Resources/font/#esamanru Light"
+                                    FontSize="9"
+                                    Foreground="{DynamicResource Color_White1}" 
+                                    Margin="0" 
+                                    TextTrimming="CharacterEllipsis" 
+                                    VerticalAlignment="Center" 
+                                    Grid.RowSpan="2" 
+                                    TextAlignment="Center" 
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Stretch"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <DockPanel Grid.Column="1"
+                       Background="{DynamicResource Color_White2}"/>
+
+            <Label
+                x:Name="noItemValueLabel"
+                Content="NoValue"
+                FontFamily="/Resources/font/#esamanru Light"
+                FontSize="11"
+                Grid.Column="2" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"/>
+
+            <ListView 
+                x:Name="messageDateListView"
+                Resources="{StaticResource MaterialDesignThemeForBlue}"
+                Grid.Column="2"
+                Grid.RowSpan="2" 
+                PreviewMouseLeftButtonUp="messageDateListView_PreviewMouseLeftButtonUp">
+
+                <!-- ListView item template -->
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="메시지 수신 날짜" DisplayMemberBinding="{Binding date}" Width="auto" />
+                        <GridViewColumn Header="메시지 발신 계정" DisplayMemberBinding="{Binding account}" Width="auto"/>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <svgc:SvgViewbox 
+                                        Visibility="{Binding isShow}"
+                                        Source="/Manager;component/Resources/icon/ic_notification.svg"
+                                        HorizontalAlignment="Center"
+                                        Margin="0"
+                                        Width="16"
+                                        Height="16"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <Button
+            x:Name="removeAllMessages"
+                        
+            Foreground="{DynamicResource Color_White1}"
+            Resources="{StaticResource MaterialDesignThemeForBlue}" 
+
+            Content="메시지 전체 삭제" 
+            Margin="0,28,198,27" 
+            VerticalAlignment="Center" 
+            Width="143" 
+            Height="30"
+            FontFamily="/Resources/font/#esamanru Light" 
+            FontSize="13"
+                        
+            Background="{DynamicResource Color_Blue1}" 
+            BorderBrush="{DynamicResource Color_Blue1}" 
+            HorizontalAlignment="Right" Click="removeAllMessages_Click"/>
+
+        <Button
+            x:Name="removeSelectedMessages"
+                        
+            Foreground="{DynamicResource Color_White1}"
+            Resources="{StaticResource MaterialDesignThemeForBlue}" 
+
+            Content="선택된 메시지 삭제" 
+            Margin="0,28,15,27" 
+            VerticalAlignment="Center" 
+            Width="167" 
+            Height="30"
+            FontFamily="/Resources/font/#esamanru Light" 
+            FontSize="13"
+                        
+            Background="{DynamicResource Color_Blue1}" 
+            BorderBrush="{DynamicResource Color_Blue1}" 
+            HorizontalAlignment="Right" Click="removeSelectedMessages_Click"/>
+    </Grid>
+</Page>

@@ -1,0 +1,165 @@
+﻿<Page x:Class="Manager.Pages.ServiceManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      
+      xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+      
+      xmlns:local="clr-namespace:Manager.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ServiceManagementPage">
+
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <svgc:SvgViewbox
+            Height="18"
+            Width="20" 
+            HorizontalAlignment="Left" 
+            Margin="24,34,0,0"
+            Source="/Resources/icon/ic_service_management.svg"
+            VerticalAlignment="Top"/>
+
+        <TextBlock
+            Text="서비스 관리"
+            VerticalAlignment="Top"
+            Foreground="{DynamicResource Color_Black1}"
+            FontSize="19" 
+            FontFamily="/Manager;component/Resources/font/#esamanru Medium"
+            Margin="54,32,0,0" 
+            HorizontalAlignment="Left" />
+
+        <DockPanel Grid.Row="1"
+                   Background="{DynamicResource Color_White2}"/>
+
+        <Grid
+            Grid.Row="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                Text="해당 메뉴는 서울북부지원교육청 서비스에 대한 설정을 변경 할 수 있습니다. 주의! 해당 설정을 잘못 변경하면 일반 사용자 클라이언트가 서비스를 이용하지 못할 수도 있습니다. 따라서 해당 설정은 관리자 이외에는 수정을 하지않는 것을 권고드립니다."
+                VerticalAlignment="Top"
+                Foreground="{DynamicResource Color_Black1}"
+                FontSize="13" 
+                TextWrapping="WrapWithOverflow"
+                FontFamily="/Manager;component/Resources/font/#esamanru Light"
+                Margin="20,15,20,0" />
+
+            <Grid Grid.Row="1">
+                <svgc:SvgViewbox
+                    Height="18"
+                    Width="18" 
+                    HorizontalAlignment="Left" 
+                    Margin="21,21,0,0"
+                    Source="/Resources/icon/ic_key.svg"
+                    VerticalAlignment="Top"/>
+
+                <TextBlock
+                    Text="인증키"
+                    FontSize="13"
+                    Foreground="Black"
+                    Margin="47,23,0,0" 
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top" 
+                    FontFamily="/Resources/font/#esamanru Light" 
+                    HorizontalAlignment="Left"/>
+
+                <TextBox
+                    x:Name="accessKey"
+                    Height="23"
+                    Margin="122,18,0,0" 
+                    TextWrapping="NoWrap" 
+                    VerticalAlignment="Top"
+                    FontFamily="/Resources/font/#esamanru Light" 
+                    FontSize="12"
+                                        BorderThickness="0,0,0,1.5"
+                    Resources="{StaticResource MaterialDesignThemeForBlue}"
+                    BorderBrush="Black" 
+                    SelectionBrush="#1C7BFF"
+                    HorizontalAlignment="Left"
+                    Width="237"/>
+
+                <ComboBox 
+                    x:Name="serviceAccessComboBox"
+                    Margin="122,90,0,0"
+                    VerticalAlignment="Top"
+                    FontFamily="/Resources/font/#esamanru Light"
+                    FontSize="11"
+                    Width="120"
+                    BorderThickness="0,0,0,1.5"
+                    Foreground="{DynamicResource Color_Black1}"
+                    BorderBrush="{DynamicResource Color_Black1}"
+                    Resources="{StaticResource MaterialDesignThemeForBlue}" 
+                    IsReadOnly="True" 
+                    HorizontalAlignment="Left">
+
+                    <!-- ComboBox search menu item -->
+                    <ComboBoxItem Content="접근 허용" Foreground="#FF636363"/>
+                    <ComboBoxItem Content="접근 거부" Foreground="#FF636363"/>
+                </ComboBox>
+
+                <TextBlock
+                    Text="서비스 접근 여부"
+                    FontSize="13"
+                    Foreground="Black"
+                    Margin="21,95,0,0" 
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top" 
+                    FontFamily="/Resources/font/#esamanru Light" 
+                    HorizontalAlignment="Left" 
+                    Width="96"/>
+
+                <Button
+                    x:Name="saveButton"
+                        
+                    Foreground="{DynamicResource Color_White1}"
+                    Resources="{StaticResource MaterialDesignThemeForBlue}" 
+
+                    Content="저장" 
+                    Margin="21,172,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="110" 
+                    Height="30"
+                    FontFamily="/Resources/font/#esamanru Light" 
+                    FontSize="13"
+                        
+                    Background="{DynamicResource Color_Blue1}" 
+                    BorderBrush="{DynamicResource Color_Blue1}" 
+                    HorizontalAlignment="Left" Click="saveButton_Click"/>
+                <TextBlock
+                    Text="클라이언트 버전"
+                    FontSize="13"
+                    Foreground="Black"
+                    Margin="21,60,0,0" 
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top" 
+                    FontFamily="/Resources/font/#esamanru Light" 
+                    HorizontalAlignment="Left" Width="91"/>
+                <TextBox
+                    x:Name="clientVersion"
+                    Height="23"
+                    Margin="122,55,0,0" 
+                    TextWrapping="NoWrap" 
+                    VerticalAlignment="Top"
+                    FontFamily="/Resources/font/#esamanru Light" 
+                    FontSize="12"
+                    BorderThickness="0,0,0,1.5"
+                    Resources="{StaticResource MaterialDesignThemeForBlue}"
+                    BorderBrush="Black" 
+                    SelectionBrush="#1C7BFF"
+                    HorizontalAlignment="Left"
+                    Width="237"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
