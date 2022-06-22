@@ -1,4 +1,4 @@
-# BBEDUAlertForAndroid
+# BBEDUAlertForWindows
 서울북부지원교육청 알리미 프로그램입니다. 해당 앱은 클라이언트 관리 및 메시지 발신을 위해 개발되었습니다.
 
 ### 프로그램 기능 설명 - 로딩 화면
